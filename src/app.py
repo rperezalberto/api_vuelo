@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+
 from config import config
 
 app = Flask(__name__)
@@ -7,8 +8,13 @@ conexion = MySQL(app)
 
 @app.route('/vuelos')
 def listar_vuelos():
+    # return ("Hola mundo")
     try:
-        db_cursor = conexion.connection
+       cursor = conexion.connection.cursor()
+       cursor.execute(sql)
+       datos = cursor.fetchall()
+       return "datos"
+
     except Exception as ex:
         return ex
 
